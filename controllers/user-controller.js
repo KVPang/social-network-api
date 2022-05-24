@@ -2,64 +2,85 @@ const Users = require('../models')
 
 
 module.exports = {
-    async createUser (req, res) {
+    async createUser(req, res) {
         try {
             const newUser = await User.create(req.body)
-            
+
             res.json(newUser)
-        } catch (err){
+        } catch (err) {
             res.status(500).json(err)
         }
-    }, 
-    async addReaction (req, res) {
+    },
+    async addFriend(req, res) {
         try {
-            const newReaction = await User.findOneAndUpdate(
-                { _id: req.params.userId},
-                {$addToSet: {reactions: req.body}},
-                { new: true }
-            )
-            res.json(newReaction)
+            const newFriend = await User.findOneAndUpdate({
+                _id: req.params.userId
+            }, {
+                $addToSet: {
+                    friends: req.params.friendId
+                }
+            }, {new: true})
+            res.json(newFriend)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+    async deleteFriend(req, res) {
+        try {
+            const deleteFriend = await User.findOneAndUpdate({
+                _id: req.params.userId
+            }, {
+                $pull: {
+                    friends: req.params.friendId
+                }
+            }, {new: true})
+            res.json(deleteFriend)
         } catch (err) {
             res.status(500).json(err)
         }
     },
 
-    async updateUser (req, res) {
+    async updateUser(req, res) {
         try {
-            const updateUser = await User.findOneAndUpdate(
-                {_id: req.params.userId},
-                req.body,
-                { new: true }
-            )
-            
+            const updateUser = await User.findOneAndUpdate({
+                _id: req.params.userId
+            }, req.body, {new: true})
+
             res.json(updateUser)
-        } catch (err){
+        } catch (err) {
             res.status(500).json(err)
         }
     },
 
-    async getAllUsers (req, res) {
+    async getAllUsers(req, res) {
         try {
             const getUsers = await User.find()
-            
+
             res.json(getUsers)
-        } catch (err){
+        } catch (err) {
             res.status(500).json(err)
         }
     },
 
-    async getUserById (req, res) {
+    async getUserById(req, res) {
         try {
-            const getUserId = await User.findById(
-                req.params.userId,
-            )
-            .populate("thoughts")
-            .populate("friends")
+            const getUserId = await User.findById(req.params.userId,).populate("thoughts").populate("friends")
             res.json(getUserId)
-        } catch (err){
+        } catch (err) {
             res.status(500).json(err)
         }
+    },
+
+    async deleteUser(req, res) {
+        try {
+            const deleteUser = await User.findOneAndDelete({
+                _id: req.params.userId
+            },)
+
+            res.json(deleteUser)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+
     }
-
 }
-
