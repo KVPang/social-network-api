@@ -1,19 +1,20 @@
-const Users = require('../models')
+const {User} = require('../models')
 
 
 module.exports = {
     async createUser(req, res) {
         try {
-            const newUser = await Users.create(req.body)
+            const newUser = await User.create(req.body)
 
             res.json(newUser)
         } catch (err) {
+            console.log(err)
             res.status(500).json(err)
         }
     },
     async addFriend(req, res) {
         try {
-            const newFriend = await Users.findOneAndUpdate({
+            const newFriend = await User.findOneAndUpdate({
                 _id: req.params.userId
             }, {
                 $addToSet: {
@@ -27,7 +28,7 @@ module.exports = {
     },
     async deleteFriend(req, res) {
         try {
-            const deleteFriend = await Users.findOneAndUpdate({
+            const deleteFriend = await User.findOneAndUpdate({
                 _id: req.params.userId
             }, {
                 $pull: {
@@ -42,7 +43,7 @@ module.exports = {
 
     async updateUser(req, res) {
         try {
-            const updateUser = await Users.findOneAndUpdate({
+            const updateUser = await User.findOneAndUpdate({
                 _id: req.params.userId
             }, req.body, {new: true})
 
@@ -54,7 +55,7 @@ module.exports = {
 
     async getAllUsers(req, res) {
         try {
-            const getUsers = await Users.find()
+            const getUsers = await User.find()
 
             res.json(getUsers)
         } catch (err) {
@@ -64,7 +65,7 @@ module.exports = {
 
     async getUserById(req, res) {
         try {
-            const getUserId = await Users.findById(req.params.userId,).populate("thoughts").populate("friends")
+            const getUserId = await User.findById(req.params.userId,).populate("thoughts").populate("friends")
             res.json(getUserId)
         } catch (err) {
             res.status(500).json(err)
@@ -73,7 +74,7 @@ module.exports = {
 
     async deleteUser(req, res) {
         try {
-            const deleteUser = await Users.findOneAndDelete({
+            const deleteUser = await User.findOneAndDelete({
                 _id: req.params.userId
             },)
 

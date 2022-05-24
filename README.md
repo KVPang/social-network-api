@@ -32,6 +32,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ## Usage 
 
 ## Mock Ups
+![Capture](./images/Capture(1).JPG)
 
 ## Links 
 - [GitHub](https://github.com/KVPang/social-network-api)
