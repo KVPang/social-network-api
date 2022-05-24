@@ -13,7 +13,7 @@ const UserSchema = new Schema(
             type: String,
             unique: true,
             match: [/.+@.+\..+/],
-            required: 'Passoword is Required'
+            required: 'Password is Required'
         },
 
         thoughts: [

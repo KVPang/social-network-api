@@ -1,6 +1,7 @@
 # Social Network API
 
 ## Description
+Backend social network site where users can create a user, post thoughts, and react to other user's thoughts 
 
 ## User Story
 ``` 
@@ -30,6 +31,9 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 3. `npm start`
 
 ## Usage 
+- User: Create, update and delete
+- Thoughts: Create, update, and delete
+- Reactions: React, delete
 
 ## Mock Ups
 ![Capture](./images/Capture(1).JPG)
