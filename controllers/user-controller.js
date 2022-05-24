@@ -4,7 +4,7 @@ const Users = require('../models')
 module.exports = {
     async createUser(req, res) {
         try {
-            const newUser = await User.create(req.body)
+            const newUser = await Users.create(req.body)
 
             res.json(newUser)
         } catch (err) {
@@ -13,7 +13,7 @@ module.exports = {
     },
     async addFriend(req, res) {
         try {
-            const newFriend = await User.findOneAndUpdate({
+            const newFriend = await Users.findOneAndUpdate({
                 _id: req.params.userId
             }, {
                 $addToSet: {
@@ -27,7 +27,7 @@ module.exports = {
     },
     async deleteFriend(req, res) {
         try {
-            const deleteFriend = await User.findOneAndUpdate({
+            const deleteFriend = await Users.findOneAndUpdate({
                 _id: req.params.userId
             }, {
                 $pull: {
@@ -42,7 +42,7 @@ module.exports = {
 
     async updateUser(req, res) {
         try {
-            const updateUser = await User.findOneAndUpdate({
+            const updateUser = await Users.findOneAndUpdate({
                 _id: req.params.userId
             }, req.body, {new: true})
 
@@ -54,7 +54,7 @@ module.exports = {
 
     async getAllUsers(req, res) {
         try {
-            const getUsers = await User.find()
+            const getUsers = await Users.find()
 
             res.json(getUsers)
         } catch (err) {
@@ -64,7 +64,7 @@ module.exports = {
 
     async getUserById(req, res) {
         try {
-            const getUserId = await User.findById(req.params.userId,).populate("thoughts").populate("friends")
+            const getUserId = await Users.findById(req.params.userId,).populate("thoughts").populate("friends")
             res.json(getUserId)
         } catch (err) {
             res.status(500).json(err)
@@ -73,7 +73,7 @@ module.exports = {
 
     async deleteUser(req, res) {
         try {
-            const deleteUser = await User.findOneAndDelete({
+            const deleteUser = await Users.findOneAndDelete({
                 _id: req.params.userId
             },)
 
