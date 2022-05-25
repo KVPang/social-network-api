@@ -27,7 +27,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ```
 ## Installation
 1. Clone repository 
-2. `npm install`
+2. `npm install` Express, Mongoose, and Moment
 3. `npm start`
 
 ## Usage 
@@ -36,8 +36,8 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 - Reactions: React, delete
 
 ## Mock Ups
-![Capture](./images/Capture(1).JPG)
+![Insomnia](./images/Capture2.JPG)
 
 ## Links 
 - [GitHub](https://github.com/KVPang/social-network-api)
-- [Walkthrough Video]()
+- [Walkthrough Video](https://drive.google.com/file/d/1Zw3R7f0QGPLXd_tWjRwCfEaFL35QS3kb/view)
